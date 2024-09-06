@@ -190,60 +190,29 @@
         document.getElementById('notify-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email-input').value;
-            const messageElement = document.getElementById('form-message');
             const selectedSubscription = document.querySelector('input[name="subscription"]:checked, input[name="travel-subscription"]:checked').value;
+            const messageElement = document.getElementById('form-message');
 
             try {
-                const response = await fetch('/api/subscribe', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbx_v5j0qSOeSaxE-hqgkfgOvtMLmIRZfCxY6sFapnnhIrgHzwwz0zuLnIbbUdSq4359/exec', {
                     method: 'POST',
+                    mode: 'no-cors', // Important for CORS issues
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ email, subscription: selectedSubscription }),
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    messageElement.textContent = data.message;
-                    messageElement.classList.add('text-green-600');
-                    document.getElementById('email-input').value = '';
-                } else {
-                    throw new Error('Subscription failed');
-                }
+                // Due to 'no-cors', we can't read the response, so we assume success
+                messageElement.textContent = 'Thank you for subscribing!';
+                messageElement.classList.add('text-green-600');
+                document.getElementById('email-input').value = '';
             } catch (error) {
-                messageElement.textContent = 'Oops! Something went wrong. Please try again later.';
+                console.error('Subscription error:', error);
+                messageElement.textContent = 'Subscription failed. Please try again.';
                 messageElement.classList.add('text-red-600');
             }
         });
-
-    document.getElementById('notify-form').addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                const email = document.getElementById('email-input').value;
-                const messageElement = document.getElementById('form-message');
-                const selectedSubscription = document.querySelector('input[name="subscription"]:checked, input[name="travel-subscription"]:checked').value;
-
-                try {
-            const response = await fetch('/api/subscribe', {
-                    method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({email, subscription: selectedSubscription }),
-            });
-
-                if (response.ok) {
-                const data = await response.json();
-                messageElement.textContent = data.message;
-                messageElement.classList.add('text-green-600');
-                document.getElementById('email-input').value = '';
-            } else {
-                throw new Error('Subscription failed');
-            }
-        } catch (error) {
-                    messageElement.textContent = 'Oops! Something went wrong. Please try again later.';
-                messageElement.classList.add('text-red-600');
-        }
-    });
     </script>
 </body>
 </html>

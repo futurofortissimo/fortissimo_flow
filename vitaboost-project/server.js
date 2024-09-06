@@ -43,7 +43,6 @@ app.post('/api/subscribe', async (req, res) => {
         res.status(500).json({ message: 'An error occurred while subscribing. Please try again.' });
     }
 });
-app.use(express.static(path.join(__dirname, 'public')));
 // Start server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
