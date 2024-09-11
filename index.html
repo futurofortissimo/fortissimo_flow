@@ -33,7 +33,7 @@
                     <img src="https://via.placeholder.com/80x80" alt="Thumbnail 4" class="w-20 h-20 rounded-md cursor-pointer">
                 </div>
             </div>
-            
+
             <div class="md:w-1/2">
                 <div class="flex items-center mb-4">
                     <div class="text-yellow-400 flex">
@@ -41,16 +41,16 @@
                     </div>
                     <span class="ml-2 text-sm text-gray-600">45,852+ Verified 5-star reviews</span>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex space-x-2 mb-6">
                         <button id="pouch-btn" class="flex-1 bg-black text-white py-2 px-4 rounded-md font-medium">The Pouch</button>
                         <button id="travel-btn" class="flex-1 bg-gray-100 text-gray-800 py-2 px-4 rounded-md font-medium">Travel Packs</button>
                     </div>
-                    
+
                     <div id="pouch-content">
                         <h2 class="text-xl font-semibold mb-4">Subscription. For you or for two?</h2>
-                        
+
                         <div class="space-y-4">
                             <label class="block p-4 border border-teal-600 rounded-lg cursor-pointer">
                                 <input type="radio" name="subscription" value="single" class="sr-only" checked>
@@ -68,7 +68,7 @@
                                     <strong>Free Welcome Kit:</strong> Premium Canister, Scoop, VitaBoost Shaker, 5 Free Travel Packs & 1 year supply Vitamin D3+K2**
                                 </div>
                             </label>
-                            
+
                             <label class="block p-4 border border-gray-300 rounded-lg cursor-pointer">
                                 <input type="radio" name="subscription" value="double" class="sr-only">
                                 <div class="flex items-center justify-between">
@@ -82,9 +82,9 @@
                                     </div>
                                 </div>
                             </label>
-                            
+
                             <div class="text-center text-sm text-gray-500">OR</div>
-                            
+
                             <label class="block p-4 border border-gray-300 rounded-lg cursor-pointer">
                                 <input type="radio" name="subscription" value="onetime" class="sr-only">
                                 <div class="flex items-center justify-between">
@@ -97,7 +97,7 @@
 
                     <div id="travel-content" class="hidden">
                         <h2 class="text-xl font-semibold mb-4">Travel Packs Subscription</h2>
-                        
+
                         <div class="space-y-4">
                             <label class="block p-4 border border-teal-600 rounded-lg cursor-pointer">
                                 <input type="radio" name="travel-subscription" value="15-pack" class="sr-only" checked>
@@ -112,7 +112,7 @@
                                     </div>
                                 </div>
                             </label>
-                            
+
                             <label class="block p-4 border border-gray-300 rounded-lg cursor-pointer">
                                 <input type="radio" name="travel-subscription" value="30-pack" class="sr-only">
                                 <div class="flex items-center justify-between">
@@ -128,7 +128,7 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="mt-6">
                         <h3 class="text-lg font-semibold mb-2">Get notified when available</h3>
                         <form id="notify-form" class="flex flex-col sm:flex-row gap-2">
@@ -191,6 +191,7 @@
         document.getElementById('notify-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email-input').value;
+            const selectedSubscription = document.querySelector('input[name="subscription"]:checked, input[name="travel-subscription"]:checked').value;
             const messageElement = document.getElementById('form-message');
 
             // Simulating API call for local testing
