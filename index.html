@@ -24,13 +24,13 @@
         <div class="flex flex-col md:flex-row gap-8">
             <div class="md:w-1/2">
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <img src="/api/placeholder/600/600" alt="VitaBoost Product Set" class="w-full h-auto rounded-md">
+                    <img src="https://via.placeholder.com/600x600" alt="VitaBoost Product Set" class="w-full h-auto rounded-md">
                 </div>
                 <div class="mt-4 flex space-x-2 overflow-x-auto">
-                    <img src="/api/placeholder/80/80" alt="Thumbnail 1" class="w-20 h-20 rounded-md cursor-pointer">
-                    <img src="/api/placeholder/80/80" alt="Thumbnail 2" class="w-20 h-20 rounded-md cursor-pointer">
-                    <img src="/api/placeholder/80/80" alt="Thumbnail 3" class="w-20 h-20 rounded-md cursor-pointer">
-                    <img src="/api/placeholder/80/80" alt="Thumbnail 4" class="w-20 h-20 rounded-md cursor-pointer">
+                    <img src="https://via.placeholder.com/80x80" alt="Thumbnail 1" class="w-20 h-20 rounded-md cursor-pointer">
+                    <img src="https://via.placeholder.com/80x80" alt="Thumbnail 2" class="w-20 h-20 rounded-md cursor-pointer">
+                    <img src="https://via.placeholder.com/80x80" alt="Thumbnail 3" class="w-20 h-20 rounded-md cursor-pointer">
+                    <img src="https://via.placeholder.com/80x80" alt="Thumbnail 4" class="w-20 h-20 rounded-md cursor-pointer">
                 </div>
             </div>
             
@@ -151,20 +151,21 @@
         const pouchContent = document.getElementById('pouch-content');
         const travelContent = document.getElementById('travel-content');
 
+        function setActiveButton(activeBtn, inactiveBtn) {
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-800');
+            activeBtn.classList.add('bg-black', 'text-white');
+            inactiveBtn.classList.remove('bg-black', 'text-white');
+            inactiveBtn.classList.add('bg-gray-100', 'text-gray-800');
+        }
+
         pouchBtn.addEventListener('click', () => {
-            pouchBtn.classList.remove('bg-gray-100', 'text-gray-800');
-            pouchBtn.classList.add('bg-black', 'text-white');
-            travelBtn.classList.remove('bg-black', 'text-white');
-            travelBtn.classList.add('bg-gray-100', 'text-gray-800');
+            setActiveButton(pouchBtn, travelBtn);
             pouchContent.classList.remove('hidden');
             travelContent.classList.add('hidden');
         });
 
         travelBtn.addEventListener('click', () => {
-            travelBtn.classList.remove('bg-gray-100', 'text-gray-800');
-            travelBtn.classList.add('bg-black', 'text-white');
-            pouchBtn.classList.remove('bg-black', 'text-white');
-            pouchBtn.classList.add('bg-gray-100', 'text-gray-800');
+            setActiveButton(travelBtn, pouchBtn);
             travelContent.classList.remove('hidden');
             pouchContent.classList.add('hidden');
         });
@@ -192,26 +193,13 @@
             const email = document.getElementById('email-input').value;
             const messageElement = document.getElementById('form-message');
 
-            try {
-                const response = await fetch('/api/subscribe', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email }),
-                });
-
-                if (response.ok) {
-                    messageElement.textContent = 'Thank you! We'll notify you when the product is available.';
-                    messageElement.classList.add('text-green-600');
-                    document.getElementById('email-input').value = '';
-                } else {
-                    throw new Error('Subscription failed');
-                }
-            } catch (error) {
-                messageElement.textContent = 'Oops! Something went wrong. Please try again later.';
-                messageElement.classList.add('text-red-600');
-            }
+            // Simulating API call for local testing
+            setTimeout(() => {
+                messageElement.textContent = 'Thank you! We\'ll notify you when the product is available.';
+                messageElement.classList.add('text-green-600');
+                messageElement.classList.remove('text-red-600');
+                document.getElementById('email-input').value = '';
+            }, 1000);
         });
     </script>
 </body>
